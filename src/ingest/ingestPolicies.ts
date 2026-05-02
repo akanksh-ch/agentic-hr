@@ -7,7 +7,7 @@ import type { PolicyChunk } from "../types.js";
 import { chunkSection, inferCategory, splitMarkdownIntoSections } from "./chunker.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const policyPath = path.resolve(__dirname, "../../docs/policies/onboarding-query-policy.md");
+const policyPath = path.resolve(__dirname, "../../docs/Policies/onboarding-query-policy.md");
 
 async function main() {
   const markdown = await readFile(policyPath, "utf8");

@@ -3,10 +3,12 @@ import { z } from "zod";
 
 const envSchema = z.object({
   MONGODB_URI: z.string().min(1),
-  MONGODB_DB: z.string().default("agentic_hr"),
+  MONGODB_DB: z.string().default("policies"),
   MONGODB_COLLECTION: z.string().default("policy_chunks"),
   VOYAGE_API_KEY: z.string().min(1),
-  VOYAGE_EMBEDDING_MODEL: z.string().default("voyage-3-large")
+  VOYAGE_API_BASE_URL: z.string().url().default("https://ai.mongodb.com/v1"),
+  VOYAGE_EMBEDDING_MODEL: z.string().default("voyage-3-large"),
+  VOYAGE_INPUT_TYPE: z.enum(["document", "query"]).default("document")
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
