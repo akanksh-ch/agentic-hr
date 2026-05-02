@@ -7,7 +7,11 @@ type VoyageEmbeddingResponse = {
   }>;
 };
 
-export async function embedTexts(input: string[]): Promise<number[][]> {
+type EmbedOptions = {
+  inputType?: "document" | "query";
+};
+
+export async function embedTexts(input: string[], options: EmbedOptions = {}): Promise<number[][]> {
   if (input.length === 0) {
     return [];
   }
@@ -22,7 +26,7 @@ export async function embedTexts(input: string[]): Promise<number[][]> {
     body: JSON.stringify({
       input,
       model: config.VOYAGE_EMBEDDING_MODEL,
-      input_type: config.VOYAGE_INPUT_TYPE
+      input_type: options.inputType ?? config.VOYAGE_INPUT_TYPE
     })
   });
 
@@ -41,7 +45,7 @@ export async function embedTexts(input: string[]): Promise<number[][]> {
     .map((item) => item.embedding);
 }
 
-export async function embedText(input: string): Promise<number[]> {
-  const [embedding] = await embedTexts([input]);
+export async function embedText(input: string, options: EmbedOptions = {}): Promise<number[]> {
+  const [embedding] = await embedTexts([input], options);
   return embedding;
 }

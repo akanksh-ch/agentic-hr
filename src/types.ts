@@ -10,3 +10,7 @@ export type PolicyChunk = {
   };
   createdAt: Date;
 };
+
+export type RetrievedPolicyChunk = Omit<PolicyChunk, "embedding" | "createdAt"> & {
+  score?: number;
+};

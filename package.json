@@ -4,11 +4,17 @@
   "description": "Policy ingestion pipeline for an agentic HR hackathon product.",
   "type": "module",
   "scripts": {
+    "agent:dev": "tsx src/agent.ts dev",
+    "agent:start": "node dist/agent.js start",
     "build": "tsc",
+    "index:create": "tsx src/ingest/createVectorIndex.ts",
     "ingest": "tsx src/ingest/ingestPolicies.ts",
+    "query:test": "tsx src/testPolicyQuery.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@livekit/agents": "^1.3.2",
+    "@livekit/agents-plugin-silero": "^1.3.2",
     "dotenv": "^16.4.7",
     "mongodb": "^6.12.0",
     "zod": "^3.24.1"

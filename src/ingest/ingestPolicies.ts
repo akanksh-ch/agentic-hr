@@ -1,6 +1,6 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import { readFile } from "fs/promises";
+import path from "path";
+import { fileURLToPath } from "url";
 import { getPolicyCollection, closeMongoClient } from "../db/mongo.js";
 import { embedTexts } from "../embeddings/voyage.js";
 import type { PolicyChunk } from "../types.js";
@@ -21,7 +21,10 @@ async function main() {
   );
 
   console.log(`Embedding ${chunkInputs.length} policy chunks with Voyage AI...`);
-  const embeddings = await embedTexts(chunkInputs.map((chunk) => chunk.text));
+  const embeddings = await embedTexts(
+    chunkInputs.map((chunk) => chunk.text),
+    { inputType: "document" }
+  );
 
   const policyChunks: PolicyChunk[] = chunkInputs.map((chunk, index) => ({
     text: chunk.text,
