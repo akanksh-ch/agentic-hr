@@ -103,6 +103,28 @@ npm run onboarding:summary -- emp_123
 
 For a full walkthrough, see [docs/demo-script.md](docs/demo-script.md).
 
+## Simple UI
+
+Run the LiveKit agent worker:
+
+```bash
+npm run agent:dev
+```
+
+In another terminal, start the ChatGPT-style UI:
+
+```bash
+npm run ui:dev
+```
+
+Open:
+
+```text
+http://localhost:5173
+```
+
+Enter an employee id, start a session, then type or speak to the agent.
+
 ## MongoDB Vector Index
 
 Create an Atlas Vector Search index on the `policy_chunks` collection:

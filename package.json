@@ -14,18 +14,34 @@
     "onboarding:status": "tsx src/onboardingStatus.ts",
     "onboarding:test": "tsx src/testOnboarding.ts",
     "query:test": "tsx src/testPolicyQuery.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "ui:build": "vite build",
+    "ui:dev": "tsx src/uiServer.ts",
+    "ui:start": "node dist/uiServer.js --prod"
   },
   "dependencies": {
     "@livekit/agents": "^1.3.2",
     "@livekit/agents-plugin-silero": "^1.3.2",
+    "@livekit/components-react": "^2.9.20",
+    "@livekit/components-styles": "^1.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "cors": "^2.8.6",
     "dotenv": "^16.4.7",
+    "express": "^5.2.1",
+    "livekit-client": "^2.18.8",
     "livekit-server-sdk": "^2.15.2",
     "mongodb": "^6.12.0",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
+    "vite": "^8.0.10",
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
     "@types/node": "^22.19.17",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
