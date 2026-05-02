@@ -1,0 +1,24 @@
+{
+  "name": "agentic-hr-query",
+  "version": "0.1.0",
+  "description": "Policy ingestion pipeline for an agentic HR hackathon product.",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "ingest": "tsx src/ingest/ingestPolicies.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mongodb": "^6.12.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
