@@ -36,7 +36,24 @@ The ingestion script sends `input_type=document`, which MongoDB and Voyage recom
 
 ## LiveKit Test Agent
 
-For testing, this repo includes a LiveKit agent that uses the embedded policies.
+For testing, this repo includes a LiveKit agent that can onboard a newly hired employee and answer policy questions.
+
+Onboarding flow:
+
+```text
+new employee joins LiveKit room
+  -> agent asks onboarding questions one at a time
+  -> saveOnboardingDetails stores each answer in MongoDB
+  -> when required fields are complete, mock onboarding actions are queued
+```
+
+The onboarding agent collects:
+
+- personal details: name, email, phone, date of birth, address
+- worker type: IT, Core, or Management
+- expertise/skills
+- requirements from the employer
+- chat/voice preference
 
 ```text
 employee asks policy question in LiveKit
@@ -53,6 +70,7 @@ Add these to `.env`:
 LIVEKIT_URL=wss://<your-livekit-project>.livekit.cloud
 LIVEKIT_API_KEY=<your-livekit-api-key>
 LIVEKIT_API_SECRET=<your-livekit-api-secret>
+LIVEKIT_AGENT_NAME=agentic-hr
 LIVEKIT_QUERY_LLM_MODEL=google/gemini-2.5-flash
 MONGODB_VECTOR_INDEX=policy_vector_index
 ```
@@ -68,6 +86,21 @@ To test without a LiveKit room/frontend, run:
 ```bash
 npm run query:test -- "If I move to another country, do I keep my location-based benefits?"
 ```
+
+To test onboarding storage without LiveKit:
+
+```bash
+npm run onboarding:test -- demo_employee
+```
+
+To inspect or reset a demo employee's onboarding state:
+
+```bash
+npm run onboarding:status -- emp_123
+npm run onboarding:status -- emp_123 --reset
+```
+
+For a full walkthrough, see [docs/demo-script.md](docs/demo-script.md).
 
 ## MongoDB Vector Index
 
