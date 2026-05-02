@@ -10,6 +10,7 @@
     "dispatch:test": "tsx src/livekit/dispatchAgent.ts",
     "index:create": "tsx src/ingest/createVectorIndex.ts",
     "ingest": "tsx src/ingest/ingestPolicies.ts",
+    "onboarding:summary": "tsx src/onboardingSummary.ts",
     "onboarding:status": "tsx src/onboardingStatus.ts",
     "onboarding:test": "tsx src/testOnboarding.ts",
     "query:test": "tsx src/testPolicyQuery.ts",

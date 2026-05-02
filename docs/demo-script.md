@@ -43,6 +43,7 @@ Check what was saved:
 
 ```bash
 npm run onboarding:status -- emp_123
+npm run onboarding:summary -- emp_123
 ```
 
 ## Policy Query

@@ -7,6 +7,7 @@ import {
   getNextOnboardingQuestion,
   getValidationHint
 } from "../onboarding/onboardingFlow.js";
+import { buildOnboardingDisplaySummary } from "../onboarding/onboardingSummary.js";
 import { getOnboardingProfile, updateOnboardingProfile } from "../onboarding/onboardingStore.js";
 
 const workerTypeSchema = z.enum(["IT", "Core", "Management"]);
@@ -62,6 +63,7 @@ export const saveOnboardingDetails = llm.tool({
         profile.status === "completed"
           ? buildCompletionSummary(profile)
           : buildOnboardingAssistantInstruction(profile),
+      displaySummary: buildOnboardingDisplaySummary(profile, employeeId),
       mockActions: profile.mockActions ?? []
     };
   }
@@ -87,7 +89,8 @@ export const getOnboardingStatus = llm.tool({
       missingFields,
       nextQuestion,
       validationHint: getValidationHint(missingFields[0]),
-      assistantInstruction: buildOnboardingAssistantInstruction(profile ?? { employeeId })
+      assistantInstruction: buildOnboardingAssistantInstruction(profile ?? { employeeId }),
+      displaySummary: buildOnboardingDisplaySummary(profile, employeeId)
     };
   }
 });

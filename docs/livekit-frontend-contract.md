@@ -72,6 +72,12 @@ After a LiveKit onboarding conversation, inspect what the agent saved:
 npm run onboarding:status -- emp_123
 ```
 
+For a display-ready summary shape:
+
+```bash
+npm run onboarding:summary -- emp_123
+```
+
 ## Agent Behavior
 
 The agent starts onboarding first. It asks one question at a time and stores answers in MongoDB.

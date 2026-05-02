@@ -98,6 +98,7 @@ To inspect or reset a demo employee's onboarding state:
 ```bash
 npm run onboarding:status -- emp_123
 npm run onboarding:status -- emp_123 --reset
+npm run onboarding:summary -- emp_123
 ```
 
 For a full walkthrough, see [docs/demo-script.md](docs/demo-script.md).

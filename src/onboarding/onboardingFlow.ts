@@ -1,4 +1,5 @@
 import type { MockOnboardingAction, OnboardingPatch, OnboardingProfile } from "./onboardingTypes.js";
+import { actionLabel } from "./onboardingSummary.js";
 
 export const requiredOnboardingFields = [
   "conversationPreference",
@@ -90,20 +91,7 @@ export function buildOnboardingAssistantInstruction(profile: Partial<OnboardingP
 }
 
 export function buildCompletionSummary(profile: OnboardingProfile): string {
-  const actionLabels = (profile.mockActions ?? []).map((action) => {
-    switch (action.action) {
-      case "create_employee_record":
-        return "Create employee record";
-      case "notify_people_ops":
-        return "Notify People Operations";
-      case "prepare_equipment_request":
-        return "Prepare equipment request";
-      case "prepare_access_request":
-        return "Prepare access request";
-      case "schedule_manager_review":
-        return "Schedule manager setup review";
-    }
-  });
+  const actionLabels = (profile.mockActions ?? []).map((action) => actionLabel(action.action));
 
   return [
     "Onboarding complete. Summarize this saved profile briefly and mention the queued mock actions.",
